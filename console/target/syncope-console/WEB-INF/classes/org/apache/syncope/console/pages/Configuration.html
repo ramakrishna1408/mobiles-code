@@ -1,0 +1,198 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org">
+  <wicket:head>
+    <link rel="stylesheet" type="text/css" href="css/codemirror.css" />
+    <link rel="stylesheet" type="text/css" href="css/codemirror_default_theme.css" />
+
+    <script type="text/javascript" src="scripts/codemirror.js"></script>
+    <script type="text/javascript" src="scripts/xmlpure.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#policies").tabs();
+        $("#logs").tabs();
+      });
+      function updateTextArea(editor) {
+        document.getElementById("workflowDefArea").value = editor.getValue();
+      }
+    </script>
+
+    <style>
+      td#level {
+        width: 100px;
+        text-align: center;
+      }
+    </style>
+  </wicket:head>
+
+  <wicket:extend>
+
+    <div id="tabs">
+      <ul>
+        <li class="tabs-selected">
+          <a href="#parameters"><span><wicket:message key="parameters"/></span></a>
+        </li>
+        <li><a href="#policies"><span><wicket:message key="policies"/></span></a></li>
+        <li><a href="#notifications"><span><wicket:message key="notifications"/></span></a></li>
+        <li><a href="#workflow"><span><wicket:message key="workflow"/></span></a></li>
+        <li><a href="#logs"><span><wicket:message key="logs"/></span></a></li>
+      </ul>
+      <div id="parameters">
+        <div id="users-contain" class="ui-widget" style="width:inherit">
+          <span wicket:id="confContainer">
+            <table class="ui-widget ui-widget-content table-hover"
+                   wicket:id="syncopeconf"/>
+          </span>
+
+          <span style="float:right">
+            <form wicket:id="confPaginatorForm" style="display:inline">
+              <label><wicket:message key="displayRows"/></label>
+              <select class="text ui-widget-content ui-corner-all"
+                      wicket:id="rowsChooser"/>
+            </form>
+          </span>
+        </div>
+
+        <div wicket:id="createConfigurationWin">[Show modal window for creating configuration]</div>
+        <div wicket:id="editConfigurationWin">[Show modal window for editing configuration]</div>
+
+        <a class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+           wicket:id="createConfigurationLink">
+          <wicket:message key="create_configuration"/>
+        </a>
+      </div>
+      <div id="policies">
+        <ul>
+          <li class="tabs-selected">
+            <a href="#password"><span><wicket:message key="password"/></span></a>
+          </li>
+          <li><a href="#account"><span><wicket:message key="account"/></span></a></li>
+          <li><a href="#sync"><span><wicket:message key="sync"/></span></a></li>
+        </ul>
+        <div id="password" style="border-width: 1px;border-top-width: 0px;">
+          <span wicket:id="passwordPoliciesPanel">[password policies]</span>
+        </div>
+        <div id="account" style="border-width: 1px;border-top-width: 0px;">
+          <span wicket:id="accountPoliciesPanel">[account policies]</span>
+        </div>
+        <div id="sync" style="border-width: 1px;border-top-width: 0px;">
+          <span wicket:id="syncPoliciesPanel">[sync policies]</span>
+        </div>
+      </div>
+      <div id="notifications">
+        <div id="users-contain" class="ui-widget" style="width:inherit">
+          <span wicket:id="notificationContainer">
+            <table class="ui-widget ui-widget-content table-hover"
+                   wicket:id="notificationTable"/>
+          </span>
+
+          <span style="float:right">
+            <form wicket:id="notificationPaginatorForm" style="display:inline">
+              <label><wicket:message key="displayRows"/></label>
+              <select class="text ui-widget-content ui-corner-all"
+                      wicket:id="rowsChooser"/>
+            </form>
+          </span>
+        </div>
+
+        <div wicket:id="createNotificationWin">[Show modal window for creating notification]</div>
+        <div wicket:id="editNotificationWin">[Show modal window for editing notification]</div>
+
+        <a class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+           wicket:id="createNotificationLink">
+          <wicket:message key="create_notification"/>
+        </a>
+      </div>
+      <div id="workflow">
+        <div id="users-contain" class="ui-widget" style="width:inherit">
+          <span wicket:id="workflowDefContainer">
+            <form wicket:id="workflowDefForm">
+              <textarea wicket:id="workflowDefArea" id="workflowDefArea" style="width:100%;height:350px;">
+              </textarea>
+              <div style="margin: 10px 0px 0">
+                <input type="submit"
+                       class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                       wicket:id="apply"/>
+              </div>
+            </form>
+            <script>
+              var editor = CodeMirror.fromTextArea(document.getElementById("workflowDefArea"),
+                      {mode: {name: "xmlpure"}, lineNumbers: true, onChange: updateTextArea});
+            </script>
+          </span>
+        </div>
+      </div>
+      <div id="logs">
+        <ul>
+          <li class="tabs-selected">
+            <a href="#core"><span>Core</span></a>
+          </li>
+          <li><a href="#console"><span>Console</span></a></li>
+        </ul>
+        <div id="core" style="border-width: 1px;border-top-width: 0px;">
+          <div id="users-contain" class="ui-widget" style="width:inherit">
+            <span wicket:id="coreLoggerContainer">
+              <table class="ui-widget ui-widget-content table-hover">
+                <thead class="ui-widget-header">
+                  <tr class="heaaders">
+                    <th><wicket:message key="logger"/></th>
+                    <th><wicket:message key="level"/></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr wicket:id="corelogger">
+                    <td><span wicket:id="name"/></td>
+                    <td id="level"><select wicket:id="level"/></td>
+                  </tr>
+                </tbody>
+              </table>
+            </span>
+          </div>
+        </div>
+        <div id="console" style="border-width: 1px;border-top-width: 0px;">
+          <div id="users-contain" class="ui-widget" style="width:inherit">
+            <span wicket:id="consoleLoggerContainer">
+              <table class="ui-widget ui-widget-content table-hover">
+                <thead class="ui-widget-header">
+                  <tr class="heaaders">
+                    <th><wicket:message key="logger"/></th>
+                    <th><wicket:message key="level"/></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr wicket:id="consolelogger">
+                    <td><span wicket:id="name"/></td>
+                    <td id="level"><select wicket:id="level"/></td>
+                  </tr>
+                </tbody>
+              </table>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <a style="position: absolute; top: 2px; right:20px;" wicket:id="dbExportLink">
+          <img src="img/db_export.png"width="30" height="30"
+               alt="DB export" title="title" wicket:message="title:db_export"/>
+        </a>
+      </div>    
+
+    </div>
+  </wicket:extend>
+</html>

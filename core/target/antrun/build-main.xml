@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <copy file="D:\Rk\maven\amazon\mobiles\mobiles\core\target/test-classes/test.csv" todir="D:\Rk\maven\amazon\mobiles\mobiles\core\target/test-csvdir" overwrite="true"/>
+</target>
+</project>

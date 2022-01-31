@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    ====================
+    DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
+
+    Copyright 2008-2009 Sun Microsystems, Inc. All rights reserved.
+    Copyright 2011-2013 Tirasa. All rights reserved.
+
+    The contents of this file are subject to the terms of the Common Development
+    and Distribution License("CDDL") (the "License"). You may not use this file
+    except in compliance with the License.
+
+    You can obtain a copy of the License at https://oss.oracle.com/licenses/CDDL
+    See the License for the specific language governing permissions and limitations
+    under the License.
+
+    When distributing the Covered Code, include this CDDL Header Notice in each file
+    and include the License file at https://oss.oracle.com/licenses/CDDL.
+    If applicable, add the following below this CDDL Header, with the fields
+    enclosed by brackets [] replaced by your own identifying information:
+    "Portions Copyrighted [year] [name of copyright owner]"
+    ====================
+
+-->
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+                             http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+           
+  <display-name>WS Sample</display-name>
+  
+  <!-- Spring context configuration -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:/wssampleContext.xml</param-value>
+  </context-param>
+  <!-- Spring context loader -->
+  <listener>
+    <listener-class>
+      org.springframework.web.context.ContextLoaderListener
+    </listener-class>
+  </listener>
+  <!-- persistence listener -->
+  <listener>
+    <listener-class>org.connid.bundles.soap.wssample.DefaultContentLoader</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>CXFServlet</servlet-name>
+    <servlet-class>
+      org.apache.cxf.transport.servlet.CXFServlet
+    </servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CXFServlet</servlet-name>
+    <url-pattern>/services/*</url-pattern>
+  </servlet-mapping>
+</web-app>

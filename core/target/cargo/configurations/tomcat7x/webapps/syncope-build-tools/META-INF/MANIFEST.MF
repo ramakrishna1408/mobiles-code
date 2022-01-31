@@ -1,0 +1,50 @@
+Manifest-Version: 1.0
+Export-Package: org.apache.syncope.buildtools;version="1.1.7";uses:="j
+ avax.servlet,javax.servlet.http,org.apache.directory.server.core,org.
+ apache.directory.shared.ldap.schema.ldif.extractor"
+Built-By: ilgrosso
+Tool: Bnd-2.1.0.20130426-122213
+Bundle-Name: Apache Syncope Build Tools
+Created-By: Apache Maven Bundle Plugin
+Bundle-Vendor: The Apache Software Foundation
+Build-Jdk: 1.7.0_51
+Bundle-Version: 1.1.7
+Bnd-LastModified: 1397212430566
+Bundle-ManifestVersion: 2
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-Description: Apache Syncope Build Tools
+Bundle-SymbolicName: org.apache.syncope.buildtools
+Bundle-DocURL: http://www.apache.org/
+Import-Package: javax.naming,javax.naming.directory,javax.servlet,java
+ x.servlet.http,javax.sql,org.springframework.jdbc.datasource;version=
+ "[3,4)",org.springframework.web.context;version="[3,4)",org.springfra
+ mework.web.context.support;version="[3,4)",org.apache.directory.serve
+ r.core;version="[0.9,2)";resolution:=optional,org.apache.directory.se
+ rver.core.changelog;version="[0.9,2)";resolution:=optional,org.apache
+ .directory.server.core.entry;version="[0.9,2)";resolution:=optional,o
+ rg.apache.directory.server.core.jndi;version="[0.9,2)";resolution:=op
+ tional,org.apache.directory.server.core.partition;version="[0.9,2)";r
+ esolution:=optional,org.apache.directory.server.core.partition.impl.b
+ tree.jdbm;version="[0.9,2)";resolution:=optional,org.apache.directory
+ .server.core.partition.ldif;version="[0.9,2)";resolution:=optional,or
+ g.apache.directory.server.core.schema;version="[0.9,2)";resolution:=o
+ ptional,org.apache.directory.server.i18n;version="[0.9,2)";resolution
+ :=optional,org.apache.directory.server.ldap;version="[0.9,2)";resolut
+ ion:=optional,org.apache.directory.server.protocol.shared.transport;v
+ ersion="[0.9,2)";resolution:=optional,org.apache.directory.shared.i18
+ n;version="[0.9,2)";resolution:=optional,org.apache.directory.shared.
+ ldap.entry;version="[0.9,2)";resolution:=optional,org.apache.director
+ y.shared.ldap.ldif;version="[0.9,2)";resolution:=optional,org.apache.
+ directory.shared.ldap.name;version="[0.9,2)";resolution:=optional,org
+ .apache.directory.shared.ldap.schema;version="[0.9,2)";resolution:=op
+ tional,org.apache.directory.shared.ldap.schema.ldif.extractor;version
+ ="[0.9,2)";resolution:=optional,org.apache.directory.shared.ldap.sche
+ ma.ldif.extractor.impl;version="[0.9,2)";resolution:=optional,org.apa
+ che.directory.shared.ldap.schema.loader.ldif;version="[0.9,2)";resolu
+ tion:=optional,org.apache.directory.shared.ldap.schema.manager.impl;v
+ ersion="[0.9,2)";resolution:=optional,org.apache.directory.shared.lda
+ p.schema.registries;version="[0.9,2)";resolution:=optional,org.h2.too
+ ls;version="[1.3,2)";resolution:=optional,org.slf4j;resolution:=optio
+ nal;version="[1.5,2)"
+Archiver-Version: Plexus Archiver
+
